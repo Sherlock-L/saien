@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import us.codecraft.webmagic.Spider;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 @RestController
 public class TestController {
@@ -21,7 +24,12 @@ public class TestController {
         System.out.println("开始爬取...");
         startTime = System.currentTimeMillis();
         TestPageProcessor ret = new TestPageProcessor();
-        Spider.create(ret).addUrl("http://g.manmankan.com/dy2013/mingxing/201310/3307.shtml").thread(5).run();
+
+       String onlylady= "http://pic.onlylady.com/";
+       String mmonly= "http://www.mmonly.cc/sgtp/";
+       String nanrentu= "https://www.nanrentu.cc/tag/omnm.html";
+
+        Spider.create(ret).addUrl(onlylady,mmonly,nanrentu).thread(3).run();
         endTime = System.currentTimeMillis();
         System.out.println("爬取结束，耗时约" + ((endTime - startTime) / 1000) + "秒");
       return ret.getHtml();
