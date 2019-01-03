@@ -20,10 +20,11 @@ public class TestController {
         long startTime, endTime;
         System.out.println("开始爬取...");
         startTime = System.currentTimeMillis();
-        Spider.create(new TestPageProcessor()).addUrl("http://wk-p.vemic.com/api/at/getAtDevContent?devId=398").thread(5).run();
+        TestPageProcessor ret = new TestPageProcessor();
+        Spider.create(ret).addUrl("http://g.manmankan.com/dy2013/mingxing/201310/3307.shtml").thread(5).run();
         endTime = System.currentTimeMillis();
         System.out.println("爬取结束，耗时约" + ((endTime - startTime) / 1000) + "秒");
-      return "ok";
+      return ret.getHtml();
     }
 
     @RequestMapping(value = "/rest", method = RequestMethod.GET)
